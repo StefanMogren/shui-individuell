@@ -1,0 +1,29 @@
+.post {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem;
+}
+
+.post__article {
+	padding: 1rem;
+	background-color: white;
+	box-shadow: 0 0 10px rgb(136, 136, 136);
+	position: relative;
+}
+
+.post__date-time {
+	font-size: 0.8rem;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.post__flex-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.post__triangle {
+	border-left: 30px solid white;
+	border-bottom: 30px solid transparent;
+	align-self: flex-end;
+}
