@@ -1,19 +1,51 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
 org: stefanlearning
-# "service" is the name of this project. This will also be added to your AWS resource names.
-service: backend
+service: shui-backend
 
 provider:
   name: aws
   runtime: nodejs20.x
-  # Uncomment to easily set up a custom domain. Read the docs for more details:
-  # https://www.serverless.com/framework/docs/providers/aws/guide/domains
-  # domain: api.example.com
+  region: eu-north-1
+  httpApi:
+    cors: true
+  iam:
+    role: arn:aws:iam::643575569582:role/BasicLambdaRole
 
 functions:
-  hello:
-    handler: handler.hello
+  # ----- Auth -----
+  LoginUser:
+    handler: functions/auth/LoginUser/index.handler
     events:
       - httpApi:
-          path: /
-          method: get
+        path: /api/auth/login
+        method: POST
+
+resources:
+  Resources:
+    ShiaTable:
+      Type: AWS::DynamoDB::ShiaTable
+      Properties:
+        TableName: shia-table
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+          - AttributeName: GSI1PK
+            AttributeType: S
+          - AttributeName: GSI1SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: GSI1
+            KeySchema:
+              - AttributeName: GSI1PK
+                KeyType: HASH
+              - AttributeName: GSI1SK
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
