@@ -7,17 +7,6 @@ import { sendResponse } from "../../../responses/sendResponse.mjs";
 
 export const handler = middy(async (event) => {
 	return sendResponse(200, {
-		message: "Successfully connected to LoginUser!",
+		message: "Successfully connected to DeletePost!",
 	});
-
-	/* 	const response = "is responding... but not really.";
-	if (response) {
-		return sendResponse(200, {
-			message: "Successfully connected to LoginUser!",
-			response,
-		});
-	} else {
-		return sendResponse(400, { message: "Oops! Something borked!" });
-  
-	} */
 });

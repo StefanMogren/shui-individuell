@@ -11,18 +11,68 @@ provider:
     role: arn:aws:iam::643575569582:role/BasicLambdaRole
 
 functions:
-  # ----- Auth -----
+  # ---------- Posts ----------
+  # ----- NewPost -----
+  NewPost:
+    handler: functions/posts/NewPost/index.handler
+    events:
+      - httpApi:
+          path: /api/posts
+          method: POST
+
+  # ----- GetAllPosts -----
+  GetAllPosts:
+    handler: functions/posts/GetAllPosts/index.handler
+    events:
+      - httpApi:
+          path: /api/posts
+          method: GET
+
+  # ----- GetPostsByUsername -----
+  GetPostsByUsername:
+    handler: functions/posts/GetPostsByUsername/index.handler
+    events:
+      - httpApi:
+          path: /api/posts/{username}
+          method: GET
+
+  # ----- EditPost -----
+  EditPost:
+    handler: functions/posts/EditPost/index.handler
+    events:
+      - httpApi:
+          path: /api/posts
+          method: PATCH
+
+  # ----- DeletePost -----
+  DeletePost:
+    handler: functions/posts/DeletePost/index.handler
+    events:
+      - httpApi:
+          path: /api/posts
+          method: DELETE
+
+  # ---------- Auth ----------
+  # ----- LoginUser -----
   LoginUser:
     handler: functions/auth/LoginUser/index.handler
     events:
       - httpApi:
-        path: /api/auth/login
-        method: POST
+          path: /api/auth/login
+          method: POST
+
+  # ----- RegisterUser -----
+  RegisterUser:
+    handler: functions/auth/RegisterUser/index.handler
+    events:
+      - httpApi:
+          path: /api/auth/register
+          method: POST
 
 resources:
   Resources:
     ShiaTable:
-      Type: AWS::DynamoDB::ShiaTable
+      Type: AWS::DynamoDB::Table
       Properties:
         TableName: shia-table
         BillingMode: PAY_PER_REQUEST
