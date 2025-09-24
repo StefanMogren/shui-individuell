@@ -2,6 +2,7 @@ import "./homePage.css";
 
 // ----- Components -----
 import Post from "../../components/Post/Post.jsx";
+import NewPostBtn from "../../components/NewPostBtn/NewPostBtn.jsx";
 
 function HomePage() {
 	return (
@@ -16,6 +17,7 @@ function HomePage() {
 				Checks the header if a user is logged in. If not, redirect to login
 				page. If yes, API fetch posts and render the home page.
 			</p>
+			<NewPostBtn />
 		</>
 	);
 }

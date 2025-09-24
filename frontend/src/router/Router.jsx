@@ -8,12 +8,16 @@ import PostsByUserPage from "../pages/PostsByUserPage/PostsByUserPage.jsx";
 import RegisterPage from "../pages/RegisterPage/RegisterPage.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 
+// ----- Components -----
+import HomePageLink from "../components/HomePageLink/HomePageLink.jsx";
+
 export const Router = () => {
 	return (
 		<>
 			<BrowserRouter>
 				{/* <Header /> */}
 				<main className='page'>
+					<HomePageLink />
 					<Routes>
 						<Route path='/' element={<HomePage />} />
 						<Route path='/login' element={<LoginPage />} />

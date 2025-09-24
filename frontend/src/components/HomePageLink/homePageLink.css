@@ -1,0 +1,16 @@
+.homepage-link {
+	width: 42px;
+	height: 60px;
+
+	text-align: center;
+	padding-top: 28px;
+	background-color: red;
+	position: absolute;
+	left: 2rem;
+	z-index: 999;
+	border-radius: 0 0 3px 3px;
+}
+
+.homepage-link__logo-img {
+	max-width: 100%;
+}
