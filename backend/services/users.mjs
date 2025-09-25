@@ -1,14 +1,28 @@
+import { client } from "./client.mjs";
 import { hashPassword } from "../utils/bcrypt.mjs";
 import { PutItemCommand, GetItemCommand } from "@aws-sdk/client-dynamodb";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
-export const addUser = async (user) => {
-	console.log(user);
-	// PutItemCommand
+export const registerUser = async (user) => {
+	const newUser = {
+		PK: `USER#${user.username.toLowerCase()}`,
+		SK: "PROFILE",
+		email: user.email,
+		password: await hashPassword(user.password),
+		role: user.role,
+	};
+
+	const params = {
+		TableName: "shui-table",
+		Item: marshall(newUser),
+	};
 
 	try {
+		const result = await client.send(new PutItemCommand(params));
+		return result;
 	} catch (error) {
 		console.log("Error with addUser in db:", error.message);
+		return false;
 	}
 };
 
