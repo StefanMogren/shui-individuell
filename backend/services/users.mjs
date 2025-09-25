@@ -5,7 +5,7 @@ import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
 export const registerUser = async (user) => {
 	const newUser = {
-		PK: `USER#${user.username.toLowerCase()}`,
+		PK: `USER#${user.username}`,
 		SK: "PROFILE",
 		email: user.email,
 		password: await hashPassword(user.password),
@@ -27,9 +27,23 @@ export const registerUser = async (user) => {
 };
 
 export const getUser = async (username) => {
-	// GetItemCommand
+	const findUser = {
+		PK: `USER#${username}`,
+		SK: "PROFILE",
+	};
+
+	const params = {
+		TableName: "shui-table",
+		Key: marshall(findUser),
+	};
 	try {
+		const { Item } = await client.send(new GetItemCommand(params));
+		if (!Item) return false;
+
+		const user = unmarshall(Item);
+		return user;
 	} catch (error) {
 		console.log("Error with getUser in db:", error.message);
+		return false;
 	}
 };
