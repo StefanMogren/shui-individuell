@@ -11,6 +11,12 @@ export const userSchema = Joi.object({
 				"Lösenordet måste innehålla minst en stor bokstav, en liten bokstav och en siffra.",
 		})
 		.required(),
+
+	// .valid(Joi.ref()) kontrollerar så att "repeatPassword" bara godkänns ifall dess värde matchar "password"
+	repeatPassword: Joi.string()
+		.valid(Joi.ref("password"))
+		.required()
+		.messages({ "any.only": "Password and repeat password must match." }),
 	email: Joi.string().email().required(),
 	role: Joi.string().valid("USER", "ADMIN").required(),
 });
