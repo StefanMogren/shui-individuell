@@ -14,3 +14,11 @@ export const getPosts = async () => {
 		return false;
 	}
 };
+
+export const createNewPost = async () => {
+	try {
+	} catch (error) {
+		console.log("Error with createNewPost in db:", error.message);
+		return false;
+	}
+};

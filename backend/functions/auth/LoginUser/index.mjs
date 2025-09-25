@@ -4,7 +4,6 @@ import { sendResponse } from "../../../responses/sendResponse.mjs";
 import { validateLogin } from "../../../middlewares/validateLogin.mjs";
 import { comparePasswords } from "../../../utils/bcrypt.mjs";
 import { generateToken } from "../../../utils/jwt.mjs";
-import jsonBodyParser from "@middy/http-json-body-parser";
 import { errorHandler } from "../../../middlewares/errorHandler.mjs";
 import { getUser } from "../../../services/users.mjs";
 
@@ -18,8 +17,15 @@ export const handler = middy(async (event) => {
 		);
 
 		if (doesPasswordMatch) {
+			const token = generateToken({
+				username: response.username,
+				role: response.role,
+			});
+
 			return sendResponse(200, {
 				message: "User logged in successfully!",
+				role: response.role,
+				token: `Bearer ${token}`,
 			});
 		} else {
 			return sendResponse(400, {
@@ -32,6 +38,6 @@ export const handler = middy(async (event) => {
 		});
 	}
 })
-	.use(jsonBodyParser())
+	.use(httpJsonBodyParser())
 	.use(validateLogin())
 	.use(errorHandler());
