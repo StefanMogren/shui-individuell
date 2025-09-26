@@ -18,15 +18,16 @@ export const getPosts = async () => {
 	}
 };
 
-export const createNewPost = async (post) => {
+export const createNewPost = async (text, user) => {
 	const postId = generateId();
 	const newPost = {
-		PK: `USER#${post.username}`,
+		PK: `USER#${user.username}`,
 		SK: `POST#${postId}`,
 		GSI1PK: "POST",
 		GSI1SK: postId,
-		username: post.username,
-		text: post.text,
+		username: user.username,
+		role: user.role,
+		text: text,
 		dateCreated: generateDate(),
 	};
 

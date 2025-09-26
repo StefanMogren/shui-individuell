@@ -7,6 +7,7 @@ export const registerUser = async (user) => {
 	const newUser = {
 		PK: `USER#${user.username}`,
 		SK: "PROFILE",
+		username: user.username,
 		email: user.email,
 		password: await hashPassword(user.password),
 		role: user.role,

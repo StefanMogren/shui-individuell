@@ -19,9 +19,11 @@ export const authenticateUser = () => ({
 			console.log("TOKEN: ", token);
 
 			if (!user) {
-				throw new Error("Unauthorized token");
+				throw new Error("Invalid token");
 			}
 
+			// Ser till så event.user får värdet som det verifierade tokenet har
+			// Dessa värden är role: "USER" och username: "Bosse"
 			handler.event.user = user;
 		} catch (error) {
 			console.log("Error in authenticateUser():", error.message);

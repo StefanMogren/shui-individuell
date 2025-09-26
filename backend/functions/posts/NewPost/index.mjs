@@ -7,7 +7,10 @@ import { authenticateUser } from "../../../middlewares/authenticateUser.mjs";
 import { createNewPost } from "../../../services/posts.mjs";
 export const handler = middy(async (event) => {
 	const body = event.body;
-	const newPost = await createNewPost(body);
+	console.log("LOG before createNewPost:", event.user);
+
+	const newPost = await createNewPost(event.body.text, event.user);
+	console.log("LOG after createNewPost:", event.user);
 
 	if (newPost) {
 		return sendResponse(201, {
