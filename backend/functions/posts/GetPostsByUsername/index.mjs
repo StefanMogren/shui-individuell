@@ -1,12 +1,22 @@
 import middy from "@middy/core";
-// import httpJsonBodyParser from "@middy/http-json-body-parser";
 import { sendResponse } from "../../../responses/sendResponse.mjs";
-// import { validateLogin } from "../../../middlewares/validateLogin.mjs";
-// import { comparePasswords } from "../../../utils/bcrypt.mjs";
-// import { generateToken } from "../../../utils/jwt.mjs";
+import { authenticateUser } from "../../../middlewares/authenticateUser.mjs";
+import { errorHandler } from "../../../middlewares/errorHandler.mjs";
+import { getPostsByUsername } from "../../../services/posts.mjs";
 
 export const handler = middy(async (event) => {
-	return sendResponse(200, {
-		message: "Successfully connected to getAllPostsByUsername!",
-	});
-});
+	const { username } = event.pathParameters;
+	const response = await getPostsByUsername(username);
+	if (response.length > 0) {
+		return sendResponse(200, {
+			message: `Successfully fetched all posts by user ${username}.`,
+			posts: response,
+		});
+	} else {
+		return sendResponse(404, {
+			message: `No posts made by user ${username}.`,
+		});
+	}
+})
+	.use(authenticateUser())
+	.use(errorHandler());
