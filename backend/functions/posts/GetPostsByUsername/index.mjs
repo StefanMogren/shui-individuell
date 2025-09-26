@@ -7,6 +7,6 @@ import { sendResponse } from "../../../responses/sendResponse.mjs";
 
 export const handler = middy(async (event) => {
 	return sendResponse(200, {
-		message: "Successfully connected to GetPostsByUsername!",
+		message: "Successfully connected to getAllPostsByUsername!",
 	});
 });

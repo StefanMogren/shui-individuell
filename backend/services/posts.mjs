@@ -5,15 +5,23 @@ import { PutItemCommand, GetItemCommand } from "@aws-sdk/client-dynamodb";
 import generateDate from "../utils/generateDate.mjs";
 import { generateId } from "../utils/generateId.mjs";
 
-export const getPosts = async () => {
+export const getAllPosts = async () => {
 	// QueryCommand
+	const command = new QueryCommand({
+		TableName: "shui-table",
+		IndexName: "GSI1",
+		KeyConditionExpression: "GSI1PK = :gsi1pk",
+		ExpressionAttributeValues: {
+			":gsi1pk": { S: "POST" },
+		},
+	});
 
 	try {
 		const { Items } = await client.send(command);
 		const posts = Items.map((item) => unmarshall(item));
-		return rooms;
+		return posts;
 	} catch (error) {
-		console.log("Error with getPosts in db:", error.message);
+		console.log("Error with getAllPosts in db:", error.message);
 		return false;
 	}
 };

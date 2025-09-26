@@ -23,7 +23,7 @@ export const authenticateUser = () => ({
 			}
 
 			// Ser till så event.user får värdet som det verifierade tokenet har
-			// Dessa värden är role: "USER" och username: "Bosse"
+			// Dessa värden är role: "USER" och username: "namn"
 			handler.event.user = user;
 		} catch (error) {
 			console.log("Error in authenticateUser():", error.message);
