@@ -15,12 +15,10 @@ export const handler = middy(async (event) => {
 		return sendResponse(200, {
 			message: "Successfully edited post.",
 			response,
-			theUser: event.user,
-			theBody: event.body,
 		});
 	} else {
-		return sendResponse(500, {
-			message: "Failed to edit post",
+		return sendResponse(404, {
+			message: `User does not have a post with postId: ${postId}.`,
 		});
 	}
 })

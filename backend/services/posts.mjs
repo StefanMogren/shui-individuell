@@ -5,6 +5,7 @@ import {
 	PutItemCommand,
 	GetItemCommand,
 	UpdateItemCommand,
+	DeleteItemCommand,
 } from "@aws-sdk/client-dynamodb";
 import generateDate from "../utils/generateDate.mjs";
 import { generateId } from "../utils/generateId.mjs";
@@ -96,20 +97,28 @@ export const getPostById = async (postId, user) => {
 
 export const editPost = async (username, text, postId) => {
 	const command = {
+		// Letar först upp objektet i databasen
 		TableName: "shui-table",
 		Key: marshall({
 			PK: `USER#${username}`,
 			SK: `POST#${postId}`,
 		}),
+
+		// Säger vad som ska uppdateras
+		// #text och #dateUpdated i det här fallet
 		UpdateExpression: "SET #text = :text, #dateUpdated = :dateUpdated",
 		ExpressionAttributeNames: {
 			"#text": "text",
 			"#dateUpdated": "dateUpdated",
 		},
+
+		// Säger vad #text och #dateUpdated ska uppdateras med
 		ExpressionAttributeValues: marshall({
 			":text": text,
 			":dateUpdated": generateDate(),
 		}),
+
+		// En kontroll att PK- och SK-värdet som skickas in faktiskt finns i databasen.
 		ConditionExpression: "attribute_exists(PK) AND attribute_exists(SK)",
 		ReturnValues: "ALL_NEW",
 	};
@@ -122,6 +131,25 @@ export const editPost = async (username, text, postId) => {
 		// console.error("User with postId doesn't exist.");
 		// }
 		console.log("Error with editPost in db:", error.message);
+		return false;
+	}
+};
+
+export const DeletePost = async (username, postId) => {
+	const command = {
+		TableName: "shui-table",
+		Key: marshall({
+			PK: `USER#${username}`,
+			SK: `POST#${postId}`,
+		}),
+		ConditionExpression: "attribute_exists(PK) AND attribute_exists(SK)",
+	};
+
+	try {
+		const result = await client.send(new DeleteItemCommand(command));
+		return true;
+	} catch (error) {
+		console.log("Error with deletePost in db:", error.message);
 		return false;
 	}
 };

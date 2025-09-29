@@ -49,7 +49,7 @@ functions:
     handler: functions/posts/DeletePost/index.handler
     events:
       - httpApi:
-          path: /api/posts
+          path: /api/posts/{postId}
           method: DELETE
 
   # ---------- Auth ----------
