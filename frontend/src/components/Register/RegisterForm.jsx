@@ -15,7 +15,7 @@ function RegisterForm({ setActiveForm }) {
 
 	return (
 		<section>
-			<h1>Title for Register</h1>
+			<h2>Registrera ny användare</h2>
 			<form action='post' onSubmit={registerUser}>
 				<Input labelText='Användarnamn' inputType='text' inputName='username' />
 
@@ -28,7 +28,7 @@ function RegisterForm({ setActiveForm }) {
 				/>
 
 				<Input labelText='Email' inputType='email' inputName='email' />
-				<button type='submit'>Registera ny medlem</button>
+				<button type='submit'>Registera mig</button>
 			</form>
 			<button onClick={() => setActiveForm("LOGIN")}>
 				Redan en medlem? Logga in här.

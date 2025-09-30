@@ -1,0 +1,17 @@
+.log-reg-overlay {
+	width: 80vw;
+	position: fixed;
+	top: 150%;
+	transform: translate(0, -50%);
+	padding: 3rem 1rem;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition-property: top;
+	transition-duration: 1s;
+}
+
+.transition {
+	top: 50%;
+}
