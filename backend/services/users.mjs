@@ -16,6 +16,7 @@ export const registerUser = async (user) => {
 	const params = {
 		TableName: "shui-table",
 		Item: marshall(newUser),
+		ConditionExpression: "attribute_not_exists(PK)",
 	};
 
 	try {

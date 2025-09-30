@@ -1,0 +1,16 @@
+import axios from "axios";
+
+export const fetchPosts = async () => {
+	const response = await axios
+		.get("https://0bltjosl70.execute-api.eu-north-1.amazonaws.com/api/posts")
+		.then((response) => {
+			return response;
+		})
+		.catch((error) => {
+			return error;
+		});
+
+	if (response.status === 200) {
+		return response.data.posts;
+	} else return false;
+};

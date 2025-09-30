@@ -18,5 +18,5 @@ export const handler = middy(async (event) => {
 		});
 	}
 })
-	.use(authenticateUser())
+	// .use(authenticateUser())
 	.use(errorHandler());
