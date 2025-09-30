@@ -5,7 +5,6 @@ export default async function handleForm(event, apiCall) {
 	const formJson = Object.fromEntries(formData.entries());
 
 	const response = await apiCall(formJson);
-	console.log(response);
 
 	if (response) return response;
 	else return false;

@@ -21,6 +21,8 @@ export const loginApi = async (data) => {
 };
 
 export const registerApi = async (data) => {
+	data.role = "USER";
+
 	const response = await axios
 		.post(
 			"https://0bltjosl70.execute-api.eu-north-1.amazonaws.com/api/auth/register",

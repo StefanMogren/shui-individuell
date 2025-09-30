@@ -1,4 +1,4 @@
-import { loginApi } from "../../api/auth";
+import { loginApi } from "../../api/auth.js";
 import "./loginPage.css";
 import { Link } from "react-router-dom";
 import handleForm from "../../utils/handleForm.js";
@@ -20,25 +20,14 @@ function LoginPage() {
 			<h1>Logga in för att fortsätta</h1>
 
 			<form action='post' onSubmit={login}>
-				{/* Användarnamn */}
 				<Input labelText='Användarnamn' inputType='text' inputName='username' />
 
 				<Input labelText='Lösenord' inputType='password' inputName='password' />
-				{/* 
-				<label className='login-page__input-label' htmlFor='usernameId'>
-					Användarnamn
-					<input type='text' name='username' id='usernameId' />
-				</label> */}
 
-				{/* Lösenord */}
-				{/* 				<label className='login-page__input-label' htmlFor='passwordId'>
-					Lösenord
-					<input type='password' name='password' id='passwordId' />
-				</label> */}
 				<button type='submit'>Logga in</button>
 			</form>
 
-			<Link to={"/register"}>Not a member? Register here.</Link>
+			<Link to={"/register"}>Inte en medlem? Registrera dig här.</Link>
 			<p>
 				While not the front page, it's the "default" page unless a user is
 				included in the header
