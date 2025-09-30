@@ -3,6 +3,7 @@ import "./loginPage.css";
 import { Link } from "react-router-dom";
 import handleForm from "../../utils/handleForm.js";
 import { useAuthToken } from "../../hooks/useAuthToken.js";
+import Input from "../../components/Input/Input.jsx";
 
 function LoginPage() {
 	const { setToken } = useAuthToken();
@@ -20,16 +21,20 @@ function LoginPage() {
 
 			<form action='post' onSubmit={login}>
 				{/* Användarnamn */}
+				<Input labelText='Användarnamn' inputType='text' inputName='username' />
+
+				<Input labelText='Lösenord' inputType='password' inputName='password' />
+				{/* 
 				<label className='login-page__input-label' htmlFor='usernameId'>
 					Användarnamn
 					<input type='text' name='username' id='usernameId' />
-				</label>
+				</label> */}
 
 				{/* Lösenord */}
-				<label className='login-page__input-label' htmlFor='passwordId'>
+				{/* 				<label className='login-page__input-label' htmlFor='passwordId'>
 					Lösenord
 					<input type='password' name='password' id='passwordId' />
-				</label>
+				</label> */}
 				<button type='submit'>Logga in</button>
 			</form>
 
