@@ -1,14 +1,14 @@
 import "./input.css";
 
-function Input(props) {
+function Input({ labelText, inputType, inputName, inputClass }) {
 	return (
-		<label className='label' htmlFor={`${props.inputName}Id`}>
-			{props.labelText}
+		<label className='input__label' htmlFor={`${inputName}Id`}>
+			{labelText}
 			<input
-				className='label__input'
-				type={props.inputType}
-				name={props.inputName}
-				id={`${props.inputName}Id`}
+				className={`input__text${inputClass ?? ""}`}
+				type={inputType}
+				name={inputName}
+				id={`${inputName}Id`}
 			/>
 		</label>
 	);

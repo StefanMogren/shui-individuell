@@ -31,3 +31,27 @@ export const fetchPostsByUser = async (username) => {
 		return response.data.posts;
 	} else return false;
 };
+
+export const newPostApi = async (data, token) => {
+	const config = {
+		headers: {
+			Authorization: token,
+		},
+	};
+	const response = await axios
+		.post(
+			"https://0bltjosl70.execute-api.eu-north-1.amazonaws.com/api/posts",
+			data,
+			config
+		)
+		.then((response) => {
+			return response;
+		})
+		.catch((error) => {
+			return error;
+		});
+
+	if (response.status === 201) {
+		return response;
+	} else return false;
+};

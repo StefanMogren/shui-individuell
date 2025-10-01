@@ -1,9 +1,12 @@
 import "./newPostBtn.css";
+import { useEffect, useState } from "react";
 
-function NewPostBtn() {
+function NewPostBtn({ setShowOverlay, showOverlay }) {
+	const [transition, setTransition] = useState(false);
+
 	return (
-		<button onClick={() => console.log("I clicked the new post button!")}>
-			Nytt inlägg
+		<button className='new-post-btn' onClick={() => setShowOverlay(true)}>
+			<img className='new-post-btn__img' src={"/icons/PenIcon.svg"} />
 		</button>
 	);
 }

@@ -1,0 +1,17 @@
+.new-post-btn {
+	width: 4rem;
+	height: 4rem;
+	padding: 0.3rem;
+
+	position: absolute;
+	bottom: 90px;
+	right: 1rem;
+
+	border-radius: 15px;
+	border: none;
+	background-color: var(--red-color);
+}
+
+.new-post-btn__img {
+	width: 100%;
+}

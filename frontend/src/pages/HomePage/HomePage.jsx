@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 // ----- Components -----
 import Post from "../../components/Post/Post.jsx";
 import NewPostBtn from "../../components/NewPostBtn/NewPostBtn.jsx";
+import NewPost from "../../components/NewPost/NewPost.jsx";
 import startFetching from "../../utils/startFetching.js";
 
 function HomePage() {
+	const [showOverlay, setShowOverlay] = useState(false);
 	const [posts, setPosts] = useState(null);
 	let runOnce = false;
 
@@ -20,11 +22,8 @@ function HomePage() {
 		}
 	}, []);
 
-	console.log(posts);
-
 	return (
 		<>
-			<h1>Title for HomePage</h1>
 			{posts
 				? posts.map((post) => (
 						<Post
@@ -35,15 +34,8 @@ function HomePage() {
 						/>
 				  ))
 				: "Loading posts..."}
-			<p>
-				With a list of post-compoments, filter option, scrollable list, and new
-				post-button
-			</p>
-			<p>
-				Checks the header if a user is logged in. If not, redirect to login
-				page. If yes, API fetch posts and render the home page.
-			</p>
-			<NewPostBtn />
+			{showOverlay && <NewPost setShowOverlay={setShowOverlay} />}
+			<NewPostBtn setShowOverlay={setShowOverlay} showOverlay={showOverlay} />
 		</>
 	);
 }

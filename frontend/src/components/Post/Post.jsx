@@ -5,7 +5,7 @@ function Post({ text, username, dateCreated }) {
 	return (
 		<>
 			<section className='post'>
-				<article className='post__article'>
+				<article className='post__container'>
 					<h2 className='post__date-time'>
 						<time dateTime={dateCreated}>{dateCreated}</time>
 					</h2>
