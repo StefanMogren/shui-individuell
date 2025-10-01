@@ -16,22 +16,29 @@ function LoginForm({ setActiveForm }) {
 	}
 
 	return (
-		<section className='login-page'>
+		<>
 			<h2>Logga in för att fortsätta</h2>
 
-			<form action='post' onSubmit={login}>
+			<form
+				className='log-reg-overlay__flex-column'
+				action='post'
+				onSubmit={login}>
 				<Input labelText='Användarnamn' inputType='text' inputName='username' />
 
 				<Input labelText='Lösenord' inputType='password' inputName='password' />
 
-				<button type='submit'>Logga in</button>
+				<button className='log-reg-overlay__confirm-btn' type='submit'>
+					Logga in
+				</button>
 			</form>
 
-			<button onClick={() => setActiveForm("REGISTER")}>
+			<button
+				className='log-reg-overlay__swap-btn'
+				onClick={() => setActiveForm("REGISTER")}>
 				Inte en medlem? Registrera dig här.
 			</button>
 			{/* <Link to={"/register"}></Link> */}
-		</section>
+		</>
 	);
 }
 export default LoginForm;

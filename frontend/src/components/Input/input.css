@@ -1,5 +1,10 @@
-.input-label {
+.label {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 100%;
+}
+
+.label__input {
+	border: 1px solid black;
+	border-radius: 3px;
 }

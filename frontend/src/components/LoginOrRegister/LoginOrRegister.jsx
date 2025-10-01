@@ -2,6 +2,7 @@ import "./loginOrRegister.css";
 import { useState } from "react";
 import LoginForm from "../Login/LoginForm.jsx";
 import RegisterForm from "../Register/RegisterForm.jsx";
+import { useClickOutside } from "../../hooks/useClickOutside.js";
 
 function LoginOrRegister({ setShowOverlay }) {
 	const [activeForm, setActiveForm] = useState("LOGIN");
@@ -11,20 +12,26 @@ function LoginOrRegister({ setShowOverlay }) {
 		setTransition(true);
 	}, "10");
 
-	// const loginOrRegister = "LOGIN";
+	const ref = useClickOutside(() => {
+		setShowOverlay(false);
+	});
 
 	return (
-		<div className={`log-reg-overlay ${transition ? "transition" : ""}`}>
+		<div
+			ref={ref}
+			className={`log-reg-overlay ${transition ? "transition" : ""}`}>
 			<button
-				className='log-reg-overlay__button'
+				className='log-reg-overlay__close-btn'
 				onClick={() => setShowOverlay(false)}>
 				X
 			</button>
-			{activeForm === "LOGIN" ? (
-				<LoginForm setActiveForm={setActiveForm} />
-			) : (
-				<RegisterForm setActiveForm={setActiveForm} />
-			)}
+			<section className='log-reg-overlay__flex-column'>
+				{activeForm === "LOGIN" ? (
+					<LoginForm setActiveForm={setActiveForm} />
+				) : (
+					<RegisterForm setActiveForm={setActiveForm} />
+				)}
+			</section>
 		</div>
 	);
 }
