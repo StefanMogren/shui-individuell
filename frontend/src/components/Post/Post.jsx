@@ -1,4 +1,5 @@
 import "./post.css";
+import { Link } from "react-router-dom";
 
 function Post({ text, username, dateCreated }) {
 	return (
@@ -10,9 +11,9 @@ function Post({ text, username, dateCreated }) {
 					</h2>
 					<p>{text}</p>
 					<section className='post__flex-container'>
-						<p>
+						<Link className='post__user-link' to={`/posts-by/${username}`}>
 							<b>--- {username}</b>
-						</p>
+						</Link>
 						<p>Redigera</p>
 					</section>
 				</article>

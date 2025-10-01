@@ -22,7 +22,7 @@ export const Router = () => {
 						<Route path='/' element={<HomePage />} />
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/register' element={<RegisterPage />} />
-						<Route path='/posts-by' element={<PostsByUserPage />} />
+						<Route path='/posts-by/:username' element={<PostsByUserPage />} />
 
 						<Route path='/*' element={<NoPage />} />
 					</Routes>

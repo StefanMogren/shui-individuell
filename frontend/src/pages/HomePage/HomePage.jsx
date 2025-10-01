@@ -6,22 +6,15 @@ import { useEffect, useState } from "react";
 // ----- Components -----
 import Post from "../../components/Post/Post.jsx";
 import NewPostBtn from "../../components/NewPostBtn/NewPostBtn.jsx";
+import startFetching from "../../utils/startFetching.js";
 
 function HomePage() {
 	const [posts, setPosts] = useState(null);
 	let runOnce = false;
 
 	useEffect(() => {
-		async function startFetching() {
-			const response = await fetchPosts();
-			if (response) {
-				response.sort((a, b) => a.dateCreated.localeCompare(b.dateCreated));
-				response.reverse();
-				setPosts(response);
-			}
-		}
 		if (runOnce) {
-			startFetching();
+			startFetching(fetchPosts, setPosts);
 		} else {
 			runOnce = true;
 		}

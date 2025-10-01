@@ -17,6 +17,4 @@ export const handler = middy(async (event) => {
 			message: `No posts made by user ${username}.`,
 		});
 	}
-})
-	.use(authenticateUser())
-	.use(errorHandler());
+}).use(errorHandler());
