@@ -15,7 +15,6 @@ export const Router = () => {
 			<BrowserRouter>
 				{/* <Header /> */}
 				<main className='page'>
-					<HomePageLink />
 					<Routes>
 						<Route path='/' element={<HomePage />} />
 						<Route path='/posts-by/:username' element={<PostsByUserPage />} />
