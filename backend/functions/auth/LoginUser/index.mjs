@@ -24,6 +24,7 @@ export const handler = middy(async (event) => {
 
 			return sendResponse(200, {
 				message: "User logged in successfully!",
+				username: response.username,
 				role: response.role,
 				token: `Bearer ${token}`,
 			});
