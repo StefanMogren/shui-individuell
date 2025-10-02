@@ -41,3 +41,26 @@ export const registerApi = async (data) => {
 		return response.data;
 	}
 };
+
+export const verifyUserApi = async (token) => {
+	const config = {
+		headers: {
+			Authorization: token,
+		},
+	};
+	const response = await axios
+		.get(
+			"https://0bltjosl70.execute-api.eu-north-1.amazonaws.com/api/auth/verify",
+			config
+		)
+		.then((response) => {
+			return response;
+		})
+		.catch((error) => {
+			return error;
+		});
+
+	if (response.status === 200) {
+		return response;
+	} else return false;
+};

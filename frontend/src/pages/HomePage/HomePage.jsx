@@ -8,11 +8,13 @@ import Post from "../../components/Post/Post.jsx";
 import NewPostBtn from "../../components/NewPostBtn/NewPostBtn.jsx";
 import NewPost from "../../components/NewPost/NewPost.jsx";
 import startFetching from "../../utils/startFetching.js";
+import { useAuthStore } from "../../stores/useAuthStore.js";
 
 function HomePage() {
 	const [showOverlay, setShowOverlay] = useState(false);
 	const [posts, setPosts] = useState(null);
 	let runOnce = false;
+	const { user } = useAuthStore.getState();
 
 	useEffect(() => {
 		if (runOnce) {
@@ -30,6 +32,7 @@ function HomePage() {
 							text={post.text}
 							username={post.username}
 							dateCreated={post.dateCreated}
+							loggedInUser={user}
 							key={post.GSI1SK}
 						/>
 				  ))

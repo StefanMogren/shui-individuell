@@ -1,7 +1,9 @@
 import "./post.css";
 import { Link } from "react-router-dom";
 
-function Post({ text, username, dateCreated }) {
+function Post({ text, username, loggedInUser, dateCreated }) {
+	const canEditPost =
+		loggedInUser.username === username || loggedInUser.role === "ADMIN";
 	return (
 		<>
 			<section className='post'>
@@ -14,7 +16,7 @@ function Post({ text, username, dateCreated }) {
 						<Link className='post__user-link' to={`/posts-by/${username}`}>
 							<b>--- {username}</b>
 						</Link>
-						<p>Redigera</p>
+						{canEditPost && <p>Redigera</p>}
 					</section>
 				</article>
 				<div className='post__triangle'></div>

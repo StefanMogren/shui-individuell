@@ -1,17 +1,29 @@
 import { loginApi } from "../../api/auth.js";
 import "./loginForm.css";
-import { Link } from "react-router-dom";
 import handleForm from "../../utils/handleForm.js";
 import { useAuthToken } from "../../hooks/useAuthToken.js";
 import Input from "../Input/Input.jsx";
+import { useAuthStore } from "../../stores/useAuthStore.js";
 
 function LoginForm({ setActiveForm }) {
 	const { setToken } = useAuthToken();
+	const setAuth = useAuthStore((state) => state.setAuth);
+
 	async function login(event) {
 		const response = await handleForm(event, loginApi);
 
 		if (response) {
+			console.log("Logged in successfully!");
+
 			setToken(response.token);
+
+			setAuth({
+				user: {
+					username: response.username,
+					role: response.role,
+				},
+				token: response.token,
+			});
 		}
 	}
 
