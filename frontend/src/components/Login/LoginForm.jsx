@@ -13,10 +13,10 @@ function LoginForm({ setActiveForm }) {
 		const response = await handleForm(event, loginApi);
 
 		if (response) {
-			console.log("Logged in successfully!");
-
+			// Uppdaterar token i localStorage
 			setToken(response.token);
 
+			// Uppdaterar user och token i useAuthStore
 			setAuth({
 				user: {
 					username: response.username,
@@ -24,6 +24,9 @@ function LoginForm({ setActiveForm }) {
 				},
 				token: response.token,
 			});
+
+			// Laddar om sidan
+			window.location.reload();
 		}
 	}
 

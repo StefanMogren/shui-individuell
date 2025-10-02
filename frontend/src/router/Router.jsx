@@ -14,14 +14,14 @@ export const Router = () => {
 		<>
 			<BrowserRouter>
 				{/* <Header /> */}
-				<main className='page'>
-					<Routes>
-						<Route path='/' element={<HomePage />} />
-						<Route path='/posts-by/:username' element={<PostsByUserPage />} />
+				{/* <main className='page'> */}
+				<Routes>
+					<Route path='/' element={<HomePage />} />
+					<Route path='/posts-by/:username' element={<PostsByUserPage />} />
 
-						<Route path='/*' element={<NoPage />} />
-					</Routes>
-				</main>
+					<Route path='/*' element={<NoPage />} />
+				</Routes>
+				{/* </main> */}
 				<Footer />
 			</BrowserRouter>
 		</>

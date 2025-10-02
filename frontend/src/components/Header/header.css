@@ -1,5 +1,6 @@
-.posts-by-user-page__top {
+.header {
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
+	margin: 1rem;
 }
