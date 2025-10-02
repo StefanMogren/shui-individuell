@@ -69,6 +69,14 @@ functions:
           path: /api/auth/register
           method: POST
 
+  # ----- VerifyUser -----
+  VerifyUser:
+    handler: functions/auth/VerifyUser/index.handler
+    events:
+      - httpApi:
+          path: /api/auth/verify
+          method: GET
+
 resources:
   Resources:
     ShiaTable:
