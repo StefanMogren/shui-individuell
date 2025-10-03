@@ -2,6 +2,7 @@ import "./editPost.css";
 import { useAuthToken } from "../../hooks/useAuthToken.js";
 import handleForm from "../../utils/handleForm.js";
 import { editPostApi } from "../../api/posts.js";
+import DeletePost from "../DeletePost/DeletePost.jsx";
 
 function EditPost({ text, username, postId, setShowEditForm }) {
 	const { token } = useAuthToken();
@@ -16,6 +17,7 @@ function EditPost({ text, username, postId, setShowEditForm }) {
 
 	return (
 		<>
+			<DeletePost postId={postId} token={token} />
 			<form className='input__label' action='post' onSubmit={editPost}>
 				<textarea
 					className='input__textarea'

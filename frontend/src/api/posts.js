@@ -80,3 +80,27 @@ export const editPostApi = async (data, token) => {
 		return response;
 	} else return false;
 };
+
+export const deletePostApi = async (postId, token) => {
+	const config = {
+		headers: {
+			Authorization: token,
+		},
+	};
+
+	const response = await axios
+		.delete(
+			`https://0bltjosl70.execute-api.eu-north-1.amazonaws.com/api/posts/${postId}`,
+			config
+		)
+		.then((response) => {
+			return response;
+		})
+		.catch((error) => {
+			return error;
+		});
+
+	if (response.status === 200) {
+		return response;
+	} else return false;
+};
