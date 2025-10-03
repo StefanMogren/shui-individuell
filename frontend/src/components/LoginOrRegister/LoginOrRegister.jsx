@@ -1,7 +1,7 @@
 import "./loginOrRegister.css";
 import { useState } from "react";
-import LoginForm from "../Login/LoginForm.jsx";
-import RegisterForm from "../Register/RegisterForm.jsx";
+import LoginForm from "../LoginForm/LoginForm.jsx";
+import RegisterForm from "../RegisterForm/RegisterForm.jsx";
 import { useClickOutside } from "../../hooks/useClickOutside.js";
 
 function LoginOrRegister({ setShowOverlay }) {
