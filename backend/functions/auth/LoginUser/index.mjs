@@ -11,31 +11,35 @@ export const handler = middy(async (event) => {
 	const response = await getUser(event.body.username);
 
 	if (response) {
+		const { username, password, role } = response;
 		const doesPasswordMatch = await comparePasswords(
 			event.body.password,
-			response.password
+			password
 		);
 
 		if (doesPasswordMatch) {
 			const token = generateToken({
-				username: response.username,
-				role: response.role,
+				username: username,
+				role: role,
 			});
 
 			return sendResponse(200, {
 				message: "User logged in successfully!",
-				username: response.username,
-				role: response.role,
+				success: true,
+				username: username,
+				role: role,
 				token: `Bearer ${token}`,
 			});
 		} else {
 			return sendResponse(400, {
 				message: "Password and/or username does not match.(It's password)",
+				success: false,
 			});
 		}
 	} else {
 		return sendResponse(400, {
 			message: "Password and/or username does not match.(It's username)",
+			success: false,
 		});
 	}
 })

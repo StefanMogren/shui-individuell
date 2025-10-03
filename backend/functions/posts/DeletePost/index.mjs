@@ -13,10 +13,12 @@ export const handler = middy(async (event) => {
 	if (response) {
 		return sendResponse(200, {
 			message: "Successfully deleted post.",
+			success: true,
 		});
 	} else {
 		return sendResponse(404, {
 			message: `User does not have a post with postId: ${postId}.`,
+			success: false,
 		});
 	}
 })

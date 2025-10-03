@@ -10,11 +10,13 @@ export const handler = middy(async (event) => {
 	if (response.length > 0) {
 		return sendResponse(200, {
 			message: `Successfully fetched all posts by user ${username}.`,
+			success: true,
 			posts: response,
 		});
 	} else {
 		return sendResponse(404, {
 			message: `No posts made by user ${username}.`,
+			success: false,
 		});
 	}
 }).use(errorHandler());

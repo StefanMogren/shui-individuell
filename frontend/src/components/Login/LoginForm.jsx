@@ -12,7 +12,7 @@ function LoginForm({ setActiveForm }) {
 	async function login(event) {
 		const response = await handleForm(event, loginApi);
 
-		if (response) {
+		if (response?.success) {
 			// Uppdaterar token i localStorage
 			setToken(response.token);
 
@@ -27,6 +27,8 @@ function LoginForm({ setActiveForm }) {
 
 			// Laddar om sidan
 			window.location.reload();
+		} else {
+			console.log("misslyckades att logga in");
 		}
 	}
 

@@ -10,11 +10,13 @@ export const handler = middy(async (event) => {
 	if (response) {
 		return sendResponse(200, {
 			message: "Successfully fetched all posts!",
+			success: true,
 			posts: response,
 		});
 	} else {
 		return sendResponse(500, {
 			message: "Failed to fetch posts.",
+			success: false,
 		});
 	}
 })
