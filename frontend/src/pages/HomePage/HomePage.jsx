@@ -14,15 +14,10 @@ import Header from "../../components/Header/Header.jsx";
 function HomePage() {
 	const [showOverlay, setShowOverlay] = useState(false);
 	const [posts, setPosts] = useState(null);
-	let runOnce = false;
 	const { user } = useAuthStore.getState();
 
 	useEffect(() => {
-		if (runOnce) {
-			startFetching(fetchPosts, setPosts);
-		} else {
-			runOnce = true;
-		}
+		startFetching(fetchPosts, setPosts);
 	}, []);
 
 	return (

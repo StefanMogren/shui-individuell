@@ -10,14 +10,8 @@ function PostsByUserPage() {
 	const [posts, setPosts] = useState(null);
 	const { username } = useParams();
 
-	let runOnce = false;
-
 	useEffect(() => {
-		if (runOnce) {
-			startFetching(fetchPostsByUser, setPosts, username);
-		} else {
-			runOnce = true;
-		}
+		startFetching(fetchPostsByUser, setPosts, username);
 	}, []);
 
 	return (
