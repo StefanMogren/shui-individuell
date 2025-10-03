@@ -11,7 +11,7 @@
 #root {
 	min-height: 100vh;
 	max-height: 100vh;
-	max-width: 600px;
+	max-width: 100%;
 	--dark-blue-bg-color: #19274a;
 	--red-color: #ef4343;
 	--blue-color: #00b2ff;
