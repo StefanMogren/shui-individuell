@@ -1,4 +1,3 @@
-// import "./text.css";
 import handleForm from "../../utils/handleForm.js";
 import { useAuthToken } from "../../hooks/useAuthToken.js";
 
@@ -26,7 +25,7 @@ function NewPost({ setShowOverlay }) {
 	return (
 		<section className='post post--position-absolute' ref={ref}>
 			<section className='post__container'>
-				<form action='post' onSubmit={submitPost}>
+				<form className='flex-column' action='post' onSubmit={submitPost}>
 					<label className='input__label' htmlFor='textId'>
 						Skapa nytt inlägg
 						<textarea
@@ -38,7 +37,7 @@ function NewPost({ setShowOverlay }) {
 							maxLength={300}></textarea>
 					</label>
 
-					<button className='post__submit-btn' type='submit'>
+					<button className='button-style ' type='submit'>
 						Publicera
 					</button>
 				</form>

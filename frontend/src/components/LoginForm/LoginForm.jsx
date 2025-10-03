@@ -36,10 +36,7 @@ function LoginForm({ setActiveForm }) {
 		<>
 			<h2>Logga in för att fortsätta</h2>
 
-			<form
-				className='log-reg-overlay__flex-column'
-				action='post'
-				onSubmit={login}>
+			<form className='flex-column' action='post' onSubmit={login}>
 				<Input labelText='Användarnamn' inputType='text' inputName='username' />
 
 				<Input labelText='Lösenord' inputType='password' inputName='password' />

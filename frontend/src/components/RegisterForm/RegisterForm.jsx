@@ -16,10 +16,7 @@ function RegisterForm({ setActiveForm }) {
 	return (
 		<>
 			<h2>Registrera ny användare</h2>
-			<form
-				className='log-reg-overlay__flex-column'
-				action='post'
-				onSubmit={registerUser}>
+			<form className='flex-column' action='post' onSubmit={registerUser}>
 				<Input labelText='Användarnamn' inputType='text' inputName='username' />
 
 				<Input labelText='Lösenord' inputType='password' inputName='password' />

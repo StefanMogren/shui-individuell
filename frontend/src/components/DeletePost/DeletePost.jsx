@@ -2,8 +2,8 @@ import "./deletePost.css";
 import { deletePostApi } from "../../api/posts.js";
 import { useState } from "react";
 
-function DeletePost({ postId, token }) {
-	const [showOverlay, setShowOverlay] = useState(false);
+function DeletePost({ postId, token, dateCreated, dateUpdated }) {
+	const [showConfirm, setShowConfirm] = useState(false);
 
 	async function confirmDelete(postId, token) {
 		const response = await deletePostApi(postId, token);
@@ -15,16 +15,36 @@ function DeletePost({ postId, token }) {
 
 	return (
 		<>
-			{!showOverlay && (
-				<button onClick={() => setShowOverlay(true)}>Radera inlägg</button>
-			)}
-			{showOverlay && (
-				<section>
-					<p>Är du säker på att du vill radera inlägget?</p>
-					<button onClick={() => confirmDelete(postId, token)}>
-						Ja, radera inlägget
+			{!showConfirm && (
+				<section className='flex-row'>
+					<h2 className='post__date-time'>
+						<time dateTime={dateCreated}>{dateCreated}</time>
+						{dateUpdated && (
+							<time dateTime={dateUpdated}>Redigerad: {dateUpdated}</time>
+						)}
+					</h2>
+					<button className='button-style' onClick={() => setShowConfirm(true)}>
+						Radera inlägg
 					</button>
-					<button onClick={() => setShowOverlay(false)}>Nej, abryt</button>
+				</section>
+			)}
+			{showConfirm && (
+				<section className='flex-column'>
+					<p className='delete-post__text'>
+						Är du säker på att du vill radera inlägget?
+					</p>
+					<section className='delete-post__button-container'>
+						<button
+							className='button-style'
+							onClick={() => confirmDelete(postId, token)}>
+							Ja, radera inlägget
+						</button>
+						<button
+							className='button-style'
+							onClick={() => setShowConfirm(false)}>
+							Nej, avbryt
+						</button>
+					</section>
 				</section>
 			)}
 		</>

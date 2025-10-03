@@ -25,7 +25,7 @@ function LoginOrRegister({ setShowOverlay }) {
 				onClick={() => setShowOverlay(false)}>
 				X
 			</button>
-			<section className='log-reg-overlay__flex-column'>
+			<section className='flex-column'>
 				{activeForm === "LOGIN" ? (
 					<LoginForm setActiveForm={setActiveForm} />
 				) : (

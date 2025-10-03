@@ -37,6 +37,7 @@ function HomePage() {
 										text={post.text}
 										username={post.username}
 										dateCreated={post.dateCreated}
+										dateUpdated={post?.dateUpdated}
 										loggedInUser={user}
 										key={post.GSI1SK}
 										postId={post.GSI1SK}
