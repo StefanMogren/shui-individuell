@@ -13,9 +13,6 @@ function LoginForm({ setActiveForm }) {
 		const response = await handleForm(event, loginApi);
 
 		if (response?.success) {
-			// Uppdaterar token i localStorage
-			setToken(response.token);
-
 			// Uppdaterar user och token i useAuthStore
 			setAuth({
 				user: {
@@ -24,6 +21,9 @@ function LoginForm({ setActiveForm }) {
 				},
 				token: response.token,
 			});
+
+			// Uppdaterar token i localStorage
+			setToken(response.token);
 
 			// Laddar om sidan
 			window.location.reload();
@@ -44,7 +44,7 @@ function LoginForm({ setActiveForm }) {
 
 				<Input labelText='Lösenord' inputType='password' inputName='password' />
 
-				<button className='log-reg-overlay__confirm-btn' type='submit'>
+				<button className='button-style' type='submit'>
 					Logga in
 				</button>
 			</form>
@@ -54,7 +54,6 @@ function LoginForm({ setActiveForm }) {
 				onClick={() => setActiveForm("REGISTER")}>
 				Inte en medlem? Registrera dig här.
 			</button>
-			{/* <Link to={"/register"}></Link> */}
 		</>
 	);
 }

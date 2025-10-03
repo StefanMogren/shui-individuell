@@ -28,3 +28,13 @@
 .page-layout {
 	margin: 1rem;
 }
+
+.button-style {
+	padding: 0.5rem;
+	font-size: 1rem;
+	background-color: var(--red-color);
+	color: white;
+	border: none;
+	font-weight: bold;
+	border-radius: 5px;
+}

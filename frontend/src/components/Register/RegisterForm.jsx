@@ -31,7 +31,7 @@ function RegisterForm({ setActiveForm }) {
 				/>
 
 				<Input labelText='Email' inputType='email' inputName='email' />
-				<button className='log-reg-overlay__confirm-btn' type='submit'>
+				<button className='button-style' type='submit'>
 					Registera mig
 				</button>
 			</form>
