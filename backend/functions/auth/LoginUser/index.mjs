@@ -32,13 +32,13 @@ export const handler = middy(async (event) => {
 			});
 		} else {
 			return sendResponse(400, {
-				message: "Password and/or username does not match.(It's password)",
+				message: "Användarnamnet och/eller lösenordet matchar är felaktiga.",
 				success: false,
 			});
 		}
 	} else {
 		return sendResponse(400, {
-			message: "Password and/or username does not match.(It's username)",
+			message: "Användarnamnet och/eller lösenordet matchar är felaktiga.",
 			success: false,
 		});
 	}

@@ -12,6 +12,8 @@ export const handler = middy(async (event) => {
 		return sendResponse(201, {
 			message: "Successfully registered new user!",
 			success: true,
+			username: event.body.username,
+			password: event.body.password,
 		});
 	} else {
 		return sendResponse(500, {

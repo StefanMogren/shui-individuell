@@ -9,7 +9,7 @@ export const authenticateUser = () => ({
 		console.log("AuthHeader", handler.event);
 
 		if (!authHeader) {
-			throw new Error("No token provided.");
+			throw new Error("Logga in för att fortsätta.");
 		}
 
 		const token = authHeader.split(" ")[1];
@@ -19,7 +19,9 @@ export const authenticateUser = () => ({
 			console.log("TOKEN: ", token);
 
 			if (!user) {
-				throw new Error("Invalid token");
+				throw new Error(
+					"Din inloggningssession har gått ut. Logga in igen för att fortsätta."
+				);
 			}
 
 			// Ser till så event.user får värdet som det verifierade tokenet har
@@ -27,7 +29,9 @@ export const authenticateUser = () => ({
 			handler.event.user = user;
 		} catch (error) {
 			console.log("Error in authenticateUser():", error.message);
-			throw new Error("Unauthorized token");
+			throw new Error(
+				"Din inloggningsstatus är inte giltig. Logga in på nytt för att fortsätta."
+			);
 		}
 	},
 });

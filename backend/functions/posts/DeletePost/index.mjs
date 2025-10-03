@@ -12,12 +12,12 @@ export const handler = middy(async (event) => {
 
 	if (response) {
 		return sendResponse(200, {
-			message: "Successfully deleted post.",
+			message: "Inlägget har raderats.",
 			success: true,
 		});
 	} else {
 		return sendResponse(404, {
-			message: `User does not have a post with postId: ${postId}.`,
+			message: `Du har inget inlägg med postId: ${postId}.`,
 			success: false,
 		});
 	}

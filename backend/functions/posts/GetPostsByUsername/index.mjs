@@ -15,7 +15,7 @@ export const handler = middy(async (event) => {
 		});
 	} else {
 		return sendResponse(404, {
-			message: `No posts made by user ${username}.`,
+			message: `Inga inlägg gjorda av användaren ${username}.`,
 			success: false,
 		});
 	}
