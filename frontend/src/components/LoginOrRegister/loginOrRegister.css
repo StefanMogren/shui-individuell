@@ -46,3 +46,7 @@
 	color: blue;
 	text-decoration: underline;
 }
+
+.log-reg-overlay__form-container {
+	width: 80%;
+}

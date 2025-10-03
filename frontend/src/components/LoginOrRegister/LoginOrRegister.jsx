@@ -17,7 +17,7 @@ function LoginOrRegister({ setShowOverlay }) {
 	});
 
 	return (
-		<div
+		<section
 			ref={ref}
 			className={`log-reg-overlay ${transition ? "transition" : ""}`}>
 			<button
@@ -25,14 +25,14 @@ function LoginOrRegister({ setShowOverlay }) {
 				onClick={() => setShowOverlay(false)}>
 				X
 			</button>
-			<section className='flex-column'>
+			<section className='log-reg-overlay__form-container flex-column'>
 				{activeForm === "LOGIN" ? (
 					<LoginForm setActiveForm={setActiveForm} />
 				) : (
 					<RegisterForm setActiveForm={setActiveForm} />
 				)}
 			</section>
-		</div>
+		</section>
 	);
 }
 export default LoginOrRegister;

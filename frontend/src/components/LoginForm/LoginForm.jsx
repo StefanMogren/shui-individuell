@@ -4,15 +4,20 @@ import handleForm from "../../utils/handleForm.js";
 import { useAuthToken } from "../../hooks/useAuthToken.js";
 import Input from "../Input/Input.jsx";
 import { useAuthStore } from "../../stores/useAuthStore.js";
+import { useState } from "react";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 
 function LoginForm({ setActiveForm }) {
 	const { setToken } = useAuthToken();
+	const [showError, setShowError] = useState(false);
+	const [errorMessage, setErrorMessage] = useState("");
+
 	const setAuth = useAuthStore((state) => state.setAuth);
 
 	async function login(event) {
 		const response = await handleForm(event, loginApi);
 
-		if (response?.success) {
+		if (response.success === true) {
 			// Uppdaterar user och token i useAuthStore
 			setAuth({
 				user: {
@@ -28,7 +33,9 @@ function LoginForm({ setActiveForm }) {
 			// Laddar om sidan
 			window.location.reload();
 		} else {
-			console.log("misslyckades att logga in");
+			setErrorMessage(response.message);
+
+			setShowError(true);
 		}
 	}
 
@@ -45,6 +52,9 @@ function LoginForm({ setActiveForm }) {
 					Logga in
 				</button>
 			</form>
+			{showError && (
+				<ErrorMessage text={errorMessage} setShowError={setShowError} />
+			)}
 
 			<button
 				className='log-reg-overlay__swap-btn'

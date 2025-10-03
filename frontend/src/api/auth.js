@@ -16,7 +16,7 @@ export const loginApi = async (data) => {
 	if (response.status === 200) {
 		return response.data;
 	} else {
-		return response;
+		return response.response.data;
 	}
 };
 
@@ -36,13 +36,13 @@ export const registerApi = async (data) => {
 		});
 
 	if (response.status === 201) {
-		return response;
-	} else {
 		return response.data;
+	} else {
+		return response.response.data;
 	}
 };
 
-export const verifyUserApi = async (token) => {
+/* export const verifyUserApi = async (token) => {
 	const config = {
 		headers: {
 			Authorization: token,
@@ -64,3 +64,4 @@ export const verifyUserApi = async (token) => {
 		return response;
 	} else return false;
 };
+ */
