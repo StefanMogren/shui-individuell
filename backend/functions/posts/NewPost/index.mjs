@@ -9,7 +9,11 @@ export const handler = middy(async (event) => {
 	const { text, username } = event.body;
 	const user = event.user;
 
-	const newPost = await createNewPost(text, user);
+	// Första regex bort tomma rader ifall de är fler än en.
+	// Andra regex bort tomma rader efter sista texten.
+	const adjustedText = text.replace(/\n{2,}/g, "\n\n").replace(/\n+$/g, "");
+
+	const newPost = await createNewPost(adjustedText, user);
 
 	if (newPost) {
 		return sendResponse(201, {

@@ -9,7 +9,12 @@ import { editPost } from "../../../services/posts.mjs";
 export const handler = middy(async (event) => {
 	const { username } = event.user;
 	const { text, postId } = event.body;
-	const response = await editPost(username, text, postId);
+
+	// Första regex bort tomma rader ifall de är fler än en.
+	// Andra regex bort tomma rader efter sista texten.
+	const adjustedText = text.replace(/\n{2,}/g, "\n\n").replace(/\n+$/g, "");
+
+	const response = await editPost(username, adjustedText, postId);
 
 	if (response) {
 		return sendResponse(200, {
