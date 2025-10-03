@@ -41,11 +41,11 @@ function HomePage() {
 							: "Loading posts..."}
 					</section>
 
-					{showOverlay && <NewPost setShowOverlay={setShowOverlay} />}
 					<NewPostBtn
 						setShowOverlay={setShowOverlay}
 						showOverlay={showOverlay}
 					/>
+					{showOverlay && <NewPost setShowOverlay={setShowOverlay} />}
 				</section>
 			</main>
 		</>

@@ -5,7 +5,6 @@ import { newPostApi } from "../../api/posts.js";
 import { useClickOutside } from "../../hooks/useClickOutside.js";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import { useState } from "react";
-import { ServerRouter } from "react-router-dom";
 
 function NewPost({ setShowOverlay }) {
 	const { token } = useAuthToken();
