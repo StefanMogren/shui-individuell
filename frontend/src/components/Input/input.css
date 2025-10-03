@@ -11,4 +11,5 @@
 
 .input__textarea {
 	max-height: 300px;
+	padding: 0.5rem;
 }

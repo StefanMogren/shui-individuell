@@ -39,6 +39,7 @@ function HomePage() {
 										dateCreated={post.dateCreated}
 										loggedInUser={user}
 										key={post.GSI1SK}
+										postId={post.GSI1SK}
 									/>
 							  ))
 							: "Loading posts..."}

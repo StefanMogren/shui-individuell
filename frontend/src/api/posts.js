@@ -55,3 +55,28 @@ export const newPostApi = async (data, token) => {
 		return response;
 	} else return false;
 };
+
+export const editPostApi = async (data, token) => {
+	const config = {
+		headers: {
+			Authorization: token,
+		},
+	};
+
+	const response = await axios
+		.patch(
+			"https://0bltjosl70.execute-api.eu-north-1.amazonaws.com/api/posts",
+			data,
+			config
+		)
+		.then((response) => {
+			return response;
+		})
+		.catch((error) => {
+			return error;
+		});
+
+	if (response.status === 200) {
+		return response;
+	} else return false;
+};

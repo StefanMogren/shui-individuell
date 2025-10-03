@@ -37,6 +37,10 @@
 	justify-content: space-between;
 }
 
+.post__text {
+	white-space: pre-wrap;
+}
+
 .post__user-link {
 	text-decoration: none;
 }
