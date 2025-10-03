@@ -4,19 +4,42 @@ import handleForm from "../../utils/handleForm.js";
 import Input from "../Input/Input.jsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import { useState } from "react";
+import { loginApi } from "../../api/auth.js";
+import { useAuthToken } from "../../hooks/useAuthToken.js";
+import { useAuthStore } from "../../stores/useAuthStore.js";
 
 function RegisterForm({ setActiveForm }) {
 	const [showError, setShowError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
+	const setAuth = useAuthStore((state) => state.setAuth);
+	const { setToken } = useAuthToken();
 
 	async function registerUser(event) {
 		const response = await handleForm(event, registerApi);
 
 		if (response.success === true) {
-			console.log("Registrerad!");
 			console.log(response);
+			const loginData = {
+				username: response.username,
+				password: response.password,
+			};
+
+			const loginResponse = await loginApi(loginData);
+
+			if (loginResponse.success === true) {
+				setAuth({
+					user: {
+						username: loginResponse.username,
+						role: loginResponse.role,
+					},
+					token: loginResponse.token,
+				});
+
+				setToken(loginResponse.token);
+
+				window.location.reload();
+			}
 		} else {
-			console.log("Error...");
 			setErrorMessage(response.message);
 
 			setShowError(true);

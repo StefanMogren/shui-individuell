@@ -52,8 +52,10 @@ export const newPostApi = async (data, token) => {
 		});
 
 	if (response.status === 201) {
-		return response;
-	} else return false;
+		return response.data;
+	} else {
+		return response.response.data;
+	}
 };
 
 export const editPostApi = async (data, token) => {

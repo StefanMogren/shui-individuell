@@ -3,9 +3,14 @@ import { useAuthToken } from "../../hooks/useAuthToken.js";
 
 import { newPostApi } from "../../api/posts.js";
 import { useClickOutside } from "../../hooks/useClickOutside.js";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
+import { useState } from "react";
+import { ServerRouter } from "react-router-dom";
 
 function NewPost({ setShowOverlay }) {
 	const { token } = useAuthToken();
+	const [showError, setShowError] = useState(false);
+	const [errorMessage, setErrorMessage] = useState("");
 
 	const ref = useClickOutside(() => {
 		setShowOverlay(false);
@@ -14,11 +19,13 @@ function NewPost({ setShowOverlay }) {
 	async function submitPost(event) {
 		const response = await handleForm(event, newPostApi, token);
 
-		if (response.status === 201) {
+		if (response.success === true) {
 			console.log("status är 201!");
 			window.location.reload();
 		} else {
-			console.log("responsen är false...");
+			setErrorMessage(response.message);
+
+			setShowError(true);
 		}
 	}
 
@@ -40,6 +47,9 @@ function NewPost({ setShowOverlay }) {
 					<button className='button-style ' type='submit'>
 						Publicera
 					</button>
+					{showError && (
+						<ErrorMessage text={errorMessage} setShowError={setShowError} />
+					)}
 				</form>
 			</section>
 			<div className='post__triangle'></div>
